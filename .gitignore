@@ -1,17 +1,15 @@
-# JetBrain
+# makepkg artifacts
+pkg/
+src/
+*.pkg.tar.*
+*.deb
+LICENSE-*
+
+# Editors
 .idea/
 .run/
-
-# Visual Studio Code
 .vscode/
 .history
-
-# Vim
 *~
 *.swp
 *.swo
-
-# Environment variable files
-.env
-.env*
-!.env.example
