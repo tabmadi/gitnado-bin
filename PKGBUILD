@@ -50,6 +50,19 @@ package() {
   bsdtar -xf "${srcdir}/${_deb}" -C "${srcdir}"
   bsdtar -xf "${srcdir}"/data.tar.* -C "${pkgdir}"
 
+  # Pin the updater manifest to this release instead of "latest": the app then
+  # sees no newer version, so it stops announcing (and auto-installing) updates
+  # that pacman manages. The replacement must keep the exact byte length of the
+  # original, since the string is baked into the binary.
+  local _old='releases/latest/download/latest.json'
+  local _new="releases/download/v${pkgver}/latest.json"
+  if (( ${#_old} != ${#_new} )); then
+    echo "updater URL pin changes length (${#_old} vs ${#_new}); needs a rework" >&2
+    return 1
+  fi
+  LC_ALL=C sed -i "s|${_old}|${_new}|" "${pkgdir}/usr/bin/${_appname}"
+  grep -qaF "${_new}" "${pkgdir}/usr/bin/${_appname}"
+
   install -Dm644 "${srcdir}/LICENSE-${pkgver}" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
