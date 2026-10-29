@@ -2,7 +2,7 @@
 
 pkgname=gitnado-bin
 _appname=gitnado
-pkgver=0.9.1
+pkgver=1.0.0
 pkgrel=1
 pkgdesc="Fast, privacy-first Git GUI client built with Tauri, Lit and Rust"
 arch=('x86_64')
@@ -43,7 +43,7 @@ _deb="Gitnado_${pkgver}_amd64.deb"
 source=("https://github.com/hegsie/gitnado/releases/download/v${pkgver}/${_deb}"
         "LICENSE-${pkgver}::https://raw.githubusercontent.com/hegsie/gitnado/v${pkgver}/LICENSE")
 noextract=("${_deb}")
-sha256sums=('da7cf02d796837c187340b851f7b6df4c6d62f39ebb7bf13e2333ed891e4a33a'
+sha256sums=('6aa637941d08ec09e550c76d8981440044f37908cf9b27a44c61cd5d719510b2'
             'a363ba4cc1a17c9a5c3a6206d866769447f6dd9ea996910e400262b981fb2163')
 
 package() {
